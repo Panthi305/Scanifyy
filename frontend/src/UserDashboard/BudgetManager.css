@@ -1,0 +1,215 @@
+/* BudgetManager.css */
+.budget-manager {
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 850px;
+  background: linear-gradient(145deg, #141414, #1e1e1e); /* Dark gradient for depth */
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  color: #e4e4e4;
+  font-family: 'Inter', sans-serif;
+  backdrop-filter: blur(8px); /* Subtle glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Header */
+.budget-manager h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient text */
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.budget-manager p {
+  font-size: 1rem;
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Error & success messages */
+.error-text,
+.success-text {
+  padding: 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.error-text {
+  background: rgba(255, 76, 76, 0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 76, 76, 0.3);
+}
+
+.success-text {
+  background: rgba(76, 255, 140, 0.1);
+  color: #4caf50;
+  border: 1px solid rgba(76, 255, 140, 0.3);
+}
+
+/* Form */
+.budget-manager form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+/* Category inputs */
+.category-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f1f1f;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.category-input:hover {
+  background: #2a2a2a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.category-input label {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #d8d8d8;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.category-input input {
+  width: 90px;
+  padding: 0.6rem;
+  background: #121212;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  color: #f1f1f1;
+  font-size: 0.95rem;
+  text-align: right;
+  transition: all 0.2s ease;
+}
+
+.category-input input:focus {
+  outline: none;
+  border-color: #4facfe;
+  box-shadow: 0 0 8px rgba(79, 172, 254, 0.5);
+}
+
+.category-input span {
+  margin-left: 0.5rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Button */
+.budget-manager button {
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.budget-manager button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 242, 254, 0.3);
+}
+
+.budget-manager button:disabled {
+  background: #444444;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Budget alerts */
+.budget-alerts {
+  margin-top: 2rem;
+  padding: 1.2rem;
+  background: #181818;
+  border-radius: 10px;
+  border-left: 4px solid #ff6b6b;
+  box-shadow: inset 0 0 10px rgba(255, 107, 107, 0.2);
+}
+
+.budget-alerts h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.alert {
+  padding: 0.9rem;
+  background: rgba(255, 76, 76, 0.08);
+  border-radius: 8px;
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
+  color: #ff8a8a;
+  border: 1px solid rgba(255, 76, 76, 0.25);
+  animation: slideIn 0.3s ease-in;
+}
+
+.alert strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .budget-manager {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .budget-manager h3 {
+    font-size: 1.6rem;
+  }
+
+  .category-input {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .category-input input {
+    width: 100%;
+    text-align: left;
+  }
+
+  .category-input span {
+    margin-left: 0;
+  }
+
+  .budget-manager button {
+    width: 100%;
+  }
+}

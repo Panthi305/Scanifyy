@@ -1,0 +1,196 @@
+/* Base styles for the reports container */
+.reports-container {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #0d1117 0%, #1c2526 100%);
+  min-height: 100vh;
+  color: #e6edf3;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Title styling */
+.reports-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #58a6ff;
+  letter-spacing: -0.02em;
+}
+
+/* Grid layout: exactly 2 cards per row on larger screens */
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card styling */
+.report-card {
+  background: #161b22;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  padding: 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #2d333b;
+}
+
+/* Remove wide class since we want 2 per row */
+.report-card.wide {
+  grid-column: span 1;
+}
+
+.report-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Card header */
+.report-card h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #f0f6fc;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+/* Loading spinner */
+.reports-container .animate-spin {
+  border: 3px solid #2d333b;
+  border-top-color: #58a6ff;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 1.5rem auto;
+}
+
+/* Error message */
+.error {
+  background: #3d1f1f;
+  color: #ff6b6b;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  border: 1px solid #ff6b6b33;
+}
+
+/* Chart adjustments */
+.recharts-wrapper {
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100% !important;
+}
+
+.recharts-surface {
+  width: 100% !important;
+}
+
+/* Budget and tax text */
+.report-card p {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #c9d1d9;
+}
+
+.report-card p strong {
+  color: #f0f6fc;
+}
+
+/* Status indicators */
+.over-budget {
+  color: #ff6b6b;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.within-budget {
+  color: #00c49f;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Forecast text */
+.forecast-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ffbb28;
+  font-weight: 500;
+}
+
+/* Table styling */
+.category-forecast-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: #c9d1d9;
+}
+
+.category-forecast-table thead {
+  background: #1c2526;
+}
+
+.category-forecast-table th {
+  padding: 0.6rem;
+  text-align: left;
+  font-weight: 600;
+  color: #f0f6fc;
+}
+
+.category-forecast-table tbody tr {
+  border-bottom: 1px solid #2d333b;
+  transition: background 0.2s ease;
+}
+
+.category-forecast-table tbody tr:hover {
+  background: #1c2526;
+}
+
+.category-forecast-table td {
+  padding: 0.6rem;
+}
+
+/* Responsive: single column on smaller screens */
+@media (max-width: 768px) {
+  .reports-container {
+    padding: 1rem;
+  }
+
+  .reports-title {
+    font-size: 1.5rem;
+  }
+
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-card {
+    padding: 1rem;
+  }
+
+  .report-card h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reports-title {
+    font-size: 1.25rem;
+  }
+
+  .category-forecast-table {
+    font-size: 0.8rem;
+  }
+
+  .category-forecast-table th,
+  .category-forecast-table td {
+    padding: 0.4rem;
+  }
+}

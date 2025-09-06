@@ -1,0 +1,238 @@
+/* Revamped Global Styles */
+:root {
+  --background-color: #080808;
+  --text-color: #e2e8f0;
+  --secondary-text-color: #94a3b8;
+  --primary-glow-color: #55c2ff;
+  --secondary-glow-color: #8c81f8;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-preview {
+  padding: 8rem 8%;
+  background: var(--background-color);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6rem;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.preview-text {
+  flex: 1;
+  color: var(--text-color);
+}
+
+.preview-text h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-glow-color), var(--secondary-glow-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.preview-text p {
+  font-size: 1.2rem;
+  color: var(--secondary-text-color);
+  max-width: 550px;
+  line-height: 1.8;
+}
+
+/* 3D Mockup Container */
+.preview-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  perspective: 2000px; /* Stronger perspective for a deeper 3D feel */
+}
+
+.dashboard-mockup {
+  width: 100%;
+  max-width: 650px;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  background: transparent; /* No background on the main container */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+  cursor: pointer;
+  transform-style: preserve-3d; /* Crucial for child elements to be in 3D space */
+}
+
+/* Layer Styles */
+.mockup-base,
+.mockup-content,
+.mockup-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  /* Use CSS variables for parallax effect */
+  transform: translateZ(0) translateX(var(--parallax-x)) translateY(var(--parallax-y));
+  transition: transform 0.3s ease-out;
+}
+
+/* The base layer with a subtle background and border */
+.mockup-base {
+  background: rgba(14, 21, 35, 0.5);
+  border: 2px solid var(--border-color);
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1;
+  /* Back layer moves the least */
+  transform: translateZ(-20px) translateX(calc(var(--parallax-x) * 0.5)) translateY(calc(var(--parallax-y) * 0.5));
+}
+
+/* The main content layer */
+.mockup-content {
+  z-index: 2;
+  /* Content moves with a medium speed */
+  transform: translateZ(10px) translateX(calc(var(--parallax-x) * 1.5)) translateY(calc(var(--parallax-y) * 1.5));
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.placeholder-image {
+  height: 100%;
+  width: 100%;
+  background: #1a202c;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.dashboard-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+/* The top frame layer */
+.mockup-frame {
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(85, 194, 255, 0.2);
+  /* Top layer moves the most, creating the strongest depth effect */
+  transform: translateZ(30px) translateX(calc(var(--parallax-x) * 2)) translateY(calc(var(--parallax-y) * 2));
+}
+
+/* Enhanced Shimmer - more diffused and reactive */
+.mockup-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.25) 5%,
+    rgba(255, 255, 255, 0.05) 20%,
+    transparent 80%
+  );
+  mix-blend-mode: overlay;
+  transition: background 0.1s ease-out;
+  pointer-events: none;
+  z-index: 4; /* Place shimmer on top of all layers */
+}
+
+.mockup-glow {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 180deg,
+    transparent 30%,
+    var(--primary-glow-color) 40%,
+    var(--secondary-glow-color) 60%,
+    transparent 70%
+  );
+  top: -25%;
+  left: -25%;
+  animation: glow-spin 15s linear infinite, glow-pulse 4s ease-in-out infinite alternate;
+  filter: blur(120px);
+  opacity: 0.5;
+  z-index: 1; /* Keep glow behind the base layer */
+}
+
+@keyframes glow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow-pulse {
+  from {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1.25);
+    opacity: 0.6;
+  }
+}
+
+/* Reveal animations - keep them the same */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideIn 0.8s forwards;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: slideIn 0.8s forwards;
+}
+
+.delay {
+  animation-delay: 0.2s;
+}
+
+.preview-visual.reveal-right {
+  animation-delay: 0.3s;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .preview-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 4rem;
+  }
+  .preview-text h2 {
+    font-size: 2.8rem;
+  }
+  .preview-text p {
+    margin: 0 auto;
+    font-size: 1.1rem;
+  }
+}

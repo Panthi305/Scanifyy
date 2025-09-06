@@ -1,0 +1,503 @@
+/* ValueProps.css - Professional Design */
+
+.valueprops {
+
+    padding: 8rem 8%;
+
+    background: #000;
+
+    text-align: center;
+
+    color: #e2e8f0;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+
+.valueprops::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+
+        radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+
+        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+
+    pointer-events: none;
+
+}
+
+
+
+.valueprops h2 {
+
+    font-size: 2.8rem;
+
+    font-weight: 700;
+
+    color: #fff;
+
+    margin-bottom: 3.5rem;
+
+    position: relative;
+
+    display: inline-block;
+
+}
+
+
+
+.valueprops ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    max-width: 1200px;
+    /* Increased to fit 4 cards */
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns by default */
+
+    gap: 2rem;
+
+}
+
+
+
+.valueprops li {
+
+    background: rgba(30, 41, 59, 0.7);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 16px;
+
+    padding: 2rem 1.5rem;
+
+    font-size: 1.1rem;
+
+    margin: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+
+.valueprops li::before {
+
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: linear-gradient(90deg,
+
+            transparent,
+
+            rgba(59, 130, 246, 0.1),
+
+            transparent);
+
+    transition: left 0.7s ease;
+
+}
+
+
+
+.valueprops li:hover::before {
+
+    left: 100%;
+
+}
+
+
+
+.valueprops li:hover {
+
+    transform: translateY(-8px) scale(1.02);
+
+    box-shadow:
+
+        0 20px 40px rgba(0, 0, 0, 0.3),
+
+        0 0 0 1px rgba(59, 130, 246, 0.2),
+
+        inset 0 2px 10px rgba(255, 255, 255, 0.05);
+
+    border-color: rgba(59, 130, 246, 0.3);
+
+}
+
+
+
+.valueprops .icon-container {
+
+    width: 60px;
+
+    height: 60px;
+
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 1.2rem;
+
+    position: relative;
+
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+
+}
+
+
+
+.valueprops .icon-container::after {
+
+    content: '';
+
+    position: absolute;
+
+    inset: -2px;
+
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+
+    border-radius: 50%;
+
+    z-index: -1;
+
+    filter: blur(10px);
+
+    opacity: 0.5;
+
+}
+
+
+
+.valueprops .icon {
+
+    color: #fff;
+
+    font-size: 1.6rem;
+
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+
+}
+
+
+
+.valueprops li:nth-child(2) .icon-container {
+
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+
+}
+
+
+
+.valueprops li:nth-child(2) .icon-container::after {
+
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+
+}
+
+
+
+.valueprops li:nth-child(3) .icon-container {
+
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+
+}
+
+
+
+.valueprops li:nth-child(3) .icon-container::after {
+
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+
+}
+
+
+
+.valueprops li:nth-child(4) .icon-container {
+
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+
+}
+
+
+
+.valueprops li:nth-child(4) .icon-container::after {
+
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+
+}
+
+
+
+.valueprops .value-text {
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    color: #e2e8f0;
+
+    margin-top: 0.5rem;
+
+}
+
+
+
+/* Subtle background elements */
+
+.valueprops .bg-element {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(40px);
+
+    z-index: 0;
+
+}
+
+
+
+.valueprops .bg-element-1 {
+
+    width: 300px;
+
+    height: 300px;
+
+    background: rgba(59, 130, 246, 0.1);
+
+    top: -150px;
+
+    right: -150px;
+
+}
+
+
+
+.valueprops .bg-element-2 {
+
+    width: 200px;
+
+    height: 200px;
+
+    background: rgba(139, 92, 246, 0.08);
+
+    bottom: -100px;
+
+    left: -100px;
+
+}
+
+
+
+/* Responsive Design */
+
+@media (max-width: 1200px) {
+
+    .valueprops ul {
+
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for tablets */
+
+        max-width: 800px;
+
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+    .valueprops {
+
+        padding: 5rem 5%;
+
+    }
+
+
+
+    .valueprops h2 {
+
+        font-size: 2.2rem;
+
+        margin-bottom: 2.5rem;
+
+    }
+
+
+
+    .valueprops ul {
+
+        grid-template-columns: 1fr;
+        /* 1 column for mobile */
+
+        gap: 1.5rem;
+
+        max-width: 400px;
+
+    }
+
+
+
+    .valueprops li {
+
+        padding: 1.5rem 1.2rem;
+
+    }
+
+
+
+    .valueprops .icon-container {
+
+        width: 50px;
+
+        height: 50px;
+
+        margin-bottom: 1rem;
+
+    }
+
+
+
+    .valueprops .icon {
+
+        font-size: 1.4rem;
+
+    }
+
+}
+
+
+
+@media (max-width: 480px) {
+
+    .valueprops h2 {
+
+        font-size: 1.8rem;
+
+    }
+
+
+
+    .valueprops .value-text {
+
+        font-size: 1rem;
+
+    }
+
+}
+
+
+
+/* Animation for list items */
+
+@keyframes fadeInUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+
+.valueprops li {
+
+    animation: fadeInUp 0.6s ease forwards;
+
+}
+
+
+
+.valueprops li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.valueprops li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.valueprops li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.valueprops li:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+
+
+/* Focus states for accessibility */
+
+.valueprops li:focus-within {
+
+    outline: 2px solid #3b82f6;
+
+    outline-offset: 2px;
+
+}

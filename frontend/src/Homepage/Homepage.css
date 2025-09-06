@@ -1,0 +1,10 @@
+.homepage {
+  background-color: #000; /* pure black theme */
+  color: #f8fafc;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;       
+}
+
+*{
+  margin: 0%;
+}
