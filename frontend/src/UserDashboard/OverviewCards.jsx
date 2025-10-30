@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./OverviewCards.css"
+import "./OverviewCards.css";
 
 const OverviewCards = ({ email }) => {
   const [cardsData, setCardsData] = useState([
@@ -10,81 +10,80 @@ const OverviewCards = ({ email }) => {
   ]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Get API base URL based on environment
+  // ✅ STEP 1: Define API base URL (auto-switch for local vs Render)
   const getApiBaseUrl = () => {
-    return window.location.hostname.includes('localhost') 
-      ? 'http://localhost:5000' 
-      : 'https://1z04b690-5000.inc1.devtunnels.ms';
+    if (window.location.hostname.includes("localhost")) {
+      return "http://localhost:5000"; // local Flask server
+    } else {
+      return "https://scanify-backend.onrender.com"; // ⚡ Replace with your actual backend Render URL
+    }
   };
 
-  // Fetch overview data from all endpoints
+  // ✅ STEP 2: Fetch all overview data from backend
   const fetchOverviewData = async () => {
     if (!email) return;
 
     try {
       setIsLoading(true);
-      
-      // Create a single API call to get all required data
-      const overviewResponse = await fetch(`${getApiBaseUrl()}/api/receipt/overview-data?email=${email}`);
-      
+
+      const overviewResponse = await fetch(
+        `${getApiBaseUrl()}/api/receipt/overview-data?email=${encodeURIComponent(email)}`
+      );
+
       if (!overviewResponse.ok) {
         throw new Error(`HTTP error! status: ${overviewResponse.status}`);
       }
 
       const overviewData = await overviewResponse.json();
-      
       if (overviewData.error) {
         throw new Error(overviewData.error);
       }
 
-      // Update cards with the fetched data
       setCardsData([
-        { 
-          title: "Total Spend", 
+        {
+          title: "Total Spend",
           value: formatCurrency(overviewData.totalSpend, overviewData.currency),
-          id: "total-spend" 
+          id: "total-spend",
         },
-        { 
-          title: "This Month", 
+        {
+          title: "This Month",
           value: formatCurrency(overviewData.thisMonthSpend, overviewData.currency),
-          id: "this-month" 
+          id: "this-month",
         },
-        { 
-          title: "Receipts", 
-          value: overviewData.receiptsCount.toString(),
-          id: "receipts" 
+        {
+          title: "Receipts",
+          value: overviewData.receiptsCount?.toString() || "0",
+          id: "receipts",
         },
-        { 
-          title: "Categories", 
-          value: overviewData.categoriesCount.toString(),
-          id: "categories" 
+        {
+          title: "Categories",
+          value: overviewData.categoriesCount?.toString() || "0",
+          id: "categories",
         },
       ]);
-
     } catch (error) {
       console.error("Failed to fetch overview data:", error);
-      // Set error state but keep trying in the background
-      setCardsData(prev => prev.map(card => ({
-        ...card,
-        value: "Error"
-      })));
+      setCardsData((prev) =>
+        prev.map((card) => ({
+          ...card,
+          value: "Error",
+        }))
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Format currency with symbol and proper formatting
-  const formatCurrency = (amount, currencySymbol = '₹') => {
+  // ✅ STEP 3: Format currency
+  const formatCurrency = (amount, currencySymbol = "₹") => {
     if (amount === undefined || amount === null) return `${currencySymbol}0`;
-    return `${currencySymbol}${amount.toLocaleString('en-IN')}`;
+    return `${currencySymbol}${amount.toLocaleString("en-IN")}`;
   };
 
+  // ✅ STEP 4: Auto-refresh every 30 seconds
   useEffect(() => {
     fetchOverviewData();
-
-    // Optional: Set up polling to refresh data periodically
-    const intervalId = setInterval(fetchOverviewData, 30000); // Refresh every 30 seconds
-
+    const intervalId = setInterval(fetchOverviewData, 30000);
     return () => clearInterval(intervalId);
   }, [email]);
 
@@ -93,9 +92,7 @@ const OverviewCards = ({ email }) => {
       {cardsData.map((card) => (
         <div key={card.id} className="overview-card">
           <h3 className="card-title">{card.title}</h3>
-          <p className="card-value">
-            {isLoading ? "Loading..." : card.value}
-          </p>
+          <p className="card-value">{isLoading ? "Loading..." : card.value}</p>
         </div>
       ))}
     </div>

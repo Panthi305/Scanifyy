@@ -34,6 +34,7 @@ CORS(
     resources={
         r"/api/*": {
             "origins": [
+                "https://scanify-frontend.onrender.com",
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
                 "https://1z04b690-5173.inc1.devtunnels.ms",
