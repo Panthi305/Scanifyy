@@ -12,6 +12,8 @@ const UploadReceipt = () => {
     const [error, setError] = useState(null);
     const [recentReceipts, setRecentReceipts] = useState([]);
     const fileInputRef = useRef(null);
+    const API_URL = "https://scanify-backend.onrender.com";
+
 
     useEffect(() => {
         fetchRecentReceipts();
@@ -27,7 +29,7 @@ const UploadReceipt = () => {
                 return;
             }
 
-            const response = await fetch(`http://localhost:5000/api/receipt/recent?email=${email}`, {
+            const response = await fetch(`${API_URL}/api/receipt/recent?email=${email}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -104,7 +106,7 @@ const UploadReceipt = () => {
             formData.append("file", file);
             formData.append("email", email);
 
-            const response = await fetch("http://localhost:5000/api/receipt/upload", {
+            const response = await fetch(`${API_URL}/api/receipt/upload`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

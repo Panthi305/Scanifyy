@@ -6,6 +6,8 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const API_URL = "https://scanify-backend.onrender.com";
+
 
   useEffect(() => {
     fetchUser();
@@ -18,7 +20,7 @@ const Profile = () => {
         alert('Please log in to view your profile.');
         return;
       }
-      const response = await fetch('http://localhost:5000/api/users/me', {
+      const response = await fetch(`${API_URL}/api/users/me`, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (response.ok) {
@@ -77,7 +79,7 @@ const Profile = () => {
         return;
       }
       // Convert monthly budget
-      const monthlyRes = await fetch('http://localhost:5000/api/users/convert-currency', {
+      const monthlyRes = await fetch(`${API_URL}/api/users/convert-currency`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -92,7 +94,7 @@ const Profile = () => {
       const monthlyData = await monthlyRes.json();
 
       // Convert yearly budget
-      const yearlyRes = await fetch('http://localhost:5000/api/users/convert-currency', {
+      const yearlyRes = await fetch(`${API_URL}/api/users/convert-currency`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -160,7 +162,7 @@ const Profile = () => {
         console.warn('Invalid avatar format, excluding from update:', dataToSend.avatar);
         delete dataToSend.avatar;
       }
-      const response = await fetch('http://localhost:5000/api/users/me', {
+      const response = await fetch(`${API_URL}/api/users/me`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

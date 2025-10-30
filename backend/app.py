@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 # Load environment variables from .env file
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__)           
 
 # Flask-Mail configuration from environment variables
 app.config['MAIL_SERVER'] = os.getenv('SMTP_HOST', 'smtp.gmail.com')

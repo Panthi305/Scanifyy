@@ -35,6 +35,7 @@ const Reports = () => {
   });
   const [loading, setLoading] = useState(true);
   const [errors, setErrors] = useState({});
+  const API_URL = "https://scanify-backend.onrender.com";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -71,25 +72,25 @@ const Reports = () => {
       setLoading(true);
       await Promise.all([
         fetchData(
-          `http://localhost:5000/api/receipt/report/summary?email=${email}`,
+          `${API_URL}/api/receipt/report/summary?email=${email}`,
           setSummary,
           { by_category: [], by_merchant: [], monthly_trend: [], currency: "" },
           "summary"
         ),
         fetchData(
-          `http://localhost:5000/api/receipt/report/budget?email=${email}`,
+          `${API_URL}/api/receipt/report/budget?email=${email}`,
           setBudget,
           { actual: 0, monthly_budget: 0, yearly_budget: 0, status: "within", currency: "" },
           "budget"
         ),
         fetchData(
-          `http://localhost:5000/api/receipt/report/tax?email=${email}`,
+          `${API_URL}/api/receipt/report/tax?email=${email}`,
           setTax,
           { total_tax: 0, avg_tax_rate: 0, receipts_with_tax: 0, currency: "" },
           "tax"
         ),
         fetchData(
-          `http://localhost:5000/api/receipt/report/forecast?email=${email}`,
+          `${API_URL}/api/receipt/report/forecast?email=${email}`,
           setForecast,
           { months: [], totals: [], forecast_next_month: 0, category_forecasts: [], currency: "" },
           "forecast"

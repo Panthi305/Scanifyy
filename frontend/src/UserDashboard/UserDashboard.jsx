@@ -14,6 +14,8 @@ const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const API_URL = "https://scanify-backend.onrender.com";
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,7 +26,7 @@ const UserDashboard = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/users/me", {
+        const response = await fetch(`${API_URL}/api/users/me`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

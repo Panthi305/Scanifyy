@@ -9,6 +9,8 @@ const Login = () => {
   const cardRef = useRef(null);
   const sectionRef = useRef(null);
   const navigate = useNavigate();
+  const API_URL = "https://scanify-backend.onrender.com";
+
 
   useEffect(() => {
     // No JS initialization needed for the background elements
@@ -51,7 +53,7 @@ const Login = () => {
     const password = e.target.password.value;
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/login', {
+      const response = await fetch(`${API_URL}/api/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -84,7 +86,7 @@ const Login = () => {
     const password = e.target.password.value;
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/signup', {
+      const response = await fetch(`${API_URL}/api/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),

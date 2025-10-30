@@ -23,13 +23,14 @@ const BudgetManager = ({ email }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const API_URL = "https://scanify-backend.onrender.com";
 
   // Fetch budget preferences when component mounts or email changes
   useEffect(() => {
     const fetchBudgetPreferences = async () => {
       setLoading(true);
       try {
-        const userResponse = await fetch("http://localhost:5000/api/users/me", {
+        const userResponse = await fetch(`${API_URL}/api/users/me`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -64,7 +65,7 @@ const BudgetManager = ({ email }) => {
   useEffect(() => {
     const checkBudgetAlerts = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/receipt/check-budget-alerts?email=${email}`, {
+        const response = await fetch(`${API_URL}/api/receipt/check-budget-alerts?email=${email}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -117,7 +118,7 @@ const BudgetManager = ({ email }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/receipt/set-budget-preferences", {
+      const response = await fetch(`${API_URL}/api/receipt/set-budget-preferences`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -137,7 +138,7 @@ const BudgetManager = ({ email }) => {
       setSuccess("Budget preferences saved successfully!");
 
       // Refresh alerts after saving preferences
-      const alertResponse = await fetch(`http://localhost:5000/api/receipt/check-budget-alerts?email=${email}`, {
+      const alertResponse = await fetch(`${API_URL}/api/receipt/check-budget-alerts?email=${email}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

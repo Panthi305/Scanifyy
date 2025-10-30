@@ -5,71 +5,73 @@ import { FaPaperPlane, FaPhone, FaEnvelope } from "react-icons/fa";
 const Contact = () => {
     const [formData, setFormData] = useState({
         name: "",
-        email: "", 
+        email: "",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
+    const API_URL = "https://scanify-backend.onrender.com";
+
 
     useEffect(() => {
         // Create particle network
         const particleNetwork = document.querySelector('.particle-network');
         if (particleNetwork) {
-          // Create particles
-          for (let i = 0; i < 80; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 4}s`;
-            particleNetwork.appendChild(particle);
-          }
-          
-          // Create connections between particles
-          const particles = particleNetwork.querySelectorAll('.particle');
-          particles.forEach((particle, index) => {
-            if (index < particles.length - 1) {
-              const nextParticle = particles[index + 1];
-              
-              const x1 = parseFloat(particle.style.left);
-              const y1 = parseFloat(particle.style.top);
-              const x2 = parseFloat(nextParticle.style.left);
-              const y2 = parseFloat(nextParticle.style.top);
-              
-              // Only create connection if particles are close enough
-              const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-              if (distance < 20) {
-                const connection = document.createElement('div');
-                connection.className = 'connection';
-                
-                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-                const length = distance * 1.5; // Adjust for % units
-                
-                connection.style.width = `${length}%`;
-                connection.style.left = `${x1}%`;
-                connection.style.top = `${y1}%`;
-                connection.style.transform = `rotate(${angle}deg)`;
-                connection.style.animationDelay = `${Math.random() * 6}s`;
-                
-                particleNetwork.appendChild(connection);
-              }
+            // Create particles
+            for (let i = 0; i < 80; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 4}s`;
+                particleNetwork.appendChild(particle);
             }
-          });
+
+            // Create connections between particles
+            const particles = particleNetwork.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                if (index < particles.length - 1) {
+                    const nextParticle = particles[index + 1];
+
+                    const x1 = parseFloat(particle.style.left);
+                    const y1 = parseFloat(particle.style.top);
+                    const x2 = parseFloat(nextParticle.style.left);
+                    const y2 = parseFloat(nextParticle.style.top);
+
+                    // Only create connection if particles are close enough
+                    const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                    if (distance < 20) {
+                        const connection = document.createElement('div');
+                        connection.className = 'connection';
+
+                        const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                        const length = distance * 1.5; // Adjust for % units
+
+                        connection.style.width = `${length}%`;
+                        connection.style.left = `${x1}%`;
+                        connection.style.top = `${y1}%`;
+                        connection.style.transform = `rotate(${angle}deg)`;
+                        connection.style.animationDelay = `${Math.random() * 6}s`;
+
+                        particleNetwork.appendChild(connection);
+                    }
+                }
+            });
         }
-        
+
         // Create digital rain effect
         const digitalRain = document.querySelector('.digital-rain');
         if (digitalRain) {
-          const characters = '01010101Scanify1010101';
-          for (let i = 0; i < 40; i++) {
-            const char = document.createElement('div');
-            char.className = 'digital-char';
-            char.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
-            char.style.left = `${Math.random() * 100}%`;
-            char.style.animationDelay = `${Math.random() * 15}s`;
-            char.style.animationDuration = `${10 + Math.random() * 10}s`;
-            digitalRain.appendChild(char);
-          }
+            const characters = '01010101Scanify1010101';
+            for (let i = 0; i < 40; i++) {
+                const char = document.createElement('div');
+                char.className = 'digital-char';
+                char.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                char.style.left = `${Math.random() * 100}%`;
+                char.style.animationDelay = `${Math.random() * 15}s`;
+                char.style.animationDuration = `${10 + Math.random() * 10}s`;
+                digitalRain.appendChild(char);
+            }
         }
     }, []);
 
@@ -86,7 +88,7 @@ const Contact = () => {
         setSubmitStatus(null);
 
         try {
-            const response = await fetch('http://localhost:5000/api/contact', {
+            const response = await fetch(`${API_URL}/api/contact`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,12 +120,12 @@ const Contact = () => {
             <div className="energy-orb"></div>
             <div className="energy-orb"></div>
             <div className="energy-orb"></div>
-            
+
             <div className="contact-content-wrapper">
                 <div className="contact-info">
                     <h2>Get in Touch</h2>
                     <p>Have a question or need support? We're here to help you get the most out of our app.</p>
-                    
+
                     <div className="info-item">
                         <FaEnvelope className="info-icon" />
                         <span>support@Scanify.com</span>
@@ -174,13 +176,13 @@ const Contact = () => {
 
                     {/* Status Message */}
                     {submitStatus && (
-                        <div className={`status-message ${submitStatus.type}`}>
+                        <div className={`status - message ${submitStatus.type} `}>
                             {submitStatus.message}
                         </div>
                     )}
 
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         className="submit-btn hologram-btn"
                         disabled={isSubmitting}
                     >

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./FAQ.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-const FAQ  = () => {
+const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
     {
-      q: "What is Receiptly?",
-      a: "Receiptly is an AI-powered tool that scans and digitizes receipts, categorizes expenses, and generates reports instantly.",
+      q: "What is Scanify?",
+      a: "Scanify is an AI-powered tool that scans and digitizes receipts, categorizes expenses, and generates reports instantly.",
     },
     {
       q: "How does the receipt scanning work?",
@@ -23,7 +23,7 @@ const FAQ  = () => {
       a: "Absolutely. We use encryption and secure cloud storage to protect your receipts and financial data.",
     },
     {
-      q: "Is Receiptly free?",
+      q: "Is Scanify free?",
       a: "You can start with our free plan. Premium features like advanced analytics and unlimited storage are available on paid plans.",
     },
   ];
