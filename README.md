@@ -1,6 +1,7 @@
 # 📲 Scanify: A Smart Receipt Scanner & Expense Manager
 
-🎥 **[Watch Demo Video](https://drive.google.com/file/d/1UPdpdwv-02dSAKvXMcrG6ejsncTUs_LF/view?usp=sharing)**
+🎥 **[Watch Demo Video](https://drive.google.com/file/d/1UPdpdwv-02dSAKvXMcrG6ejsncTUs_LF/view?usp=sharing)**  
+🌐 **[Live Project](https://scanify-frontend.onrender.com)**
 
 ---
 
