@@ -22,6 +22,10 @@
   --gray-900: #0f172a;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -29,19 +33,23 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* HERO SECTION */
 .hero {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5rem;
-  padding: 0 8%;
+  padding: 6rem 1.5rem 3rem;
   background: var(--bg-color-dark);
   position: relative;
   overflow: hidden;
   perspective: 1000px;
+  gap: clamp(2rem, 4vw, 3rem);
+  text-align: center;
 }
 
+/* Canvas Background */
 .hero-canvas {
   position: absolute;
   top: 0;
@@ -50,17 +58,24 @@ body {
   height: 100%;
   opacity: 0.3;
   z-index: 1;
+  pointer-events: none;
 }
 
+/* Content */
 .hero-content {
   z-index: 3;
   position: relative;
   max-width: 650px;
   color: var(--text-color-light);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
 }
 
 .hero-title {
-  font-size: 5rem;
+  font-size: clamp(2.3rem, 7.5vw, 5rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1rem;
@@ -80,34 +95,40 @@ body {
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3.2vw, 1.2rem);
   color: var(--text-color-muted);
   margin-bottom: 2.5rem;
   line-height: 1.6;
-  max-width: 500px;
+  max-width: 520px;
   opacity: 0;
   animation: fadeUp 0.8s 0.4s forwards;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 1.2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
   opacity: 0;
   animation: fadeUp 0.8s 0.6s forwards;
 }
 
-.cta-btn, .secondary-btn {
+.cta-btn,
+.secondary-btn {
   position: relative;
-  padding: 1rem 2.2rem;
+  padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.8rem, 4vw, 2.2rem);
   border-radius: 50px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.3s;
   border: none;
   z-index: 2;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  min-width: 140px;
 }
 
 .cta-btn {
@@ -132,28 +153,33 @@ body {
   transform: scale(1.05);
 }
 
+/* Visual Container */
 .hero-visual {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  height: clamp(320px, 70vw, 500px);
   z-index: 2;
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.3s ease-out;
   perspective: 800px;
+  margin: 0 auto;
 }
 
-.receipt-container, .report-card-container {
+/* Receipt & Report Card */
+.receipt-container,
+.report-card-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 250px;
-  height: 350px;
+  width: clamp(190px, 45vw, 250px);
+  height: clamp(260px, 65vw, 350px);
   transform-style: preserve-3d;
   will-change: transform, opacity;
   border-radius: 12px;
@@ -171,7 +197,7 @@ body {
   background: var(--card-bg-dark);
   backdrop-filter: blur(15px);
   border-radius: 12px;
-  padding: 20px;
+  padding: clamp(12px, 3vw, 20px);
   border: 1px solid var(--border-color-dark);
 }
 
@@ -183,15 +209,23 @@ body {
 }
 
 .receipt-line {
-  height: 12px;
+  height: clamp(8px, 2vw, 12px);
   background: var(--secondary-color);
   opacity: 0.3;
   border-radius: 2px;
-  margin-bottom: 10px;
+  margin-bottom: clamp(6px, 1.5vw, 10px);
+}
+
+.receipt-line.w-80 {
+  width: 80%;
+}
+
+.receipt-line.w-60 {
+  width: 60%;
 }
 
 .receipt-total {
-  height: 16px;
+  height: clamp(12px, 3vw, 16px);
   background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
   border-radius: 2px;
   margin-top: auto;
@@ -209,11 +243,11 @@ body {
   animation: scanEffect 2.5s ease-in-out infinite;
 }
 
-/* WHITE REPORT CARD STYLES */
+/* Report Card */
 .report-card-container {
   z-index: 5;
-  width: 350px;
-  height: 450px;
+  width: clamp(260px, 62vw, 350px);
+  height: clamp(350px, 88vw, 450px);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.8);
   animation: reportSequence 7s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
@@ -225,13 +259,11 @@ body {
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: 20px;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .report-card-content {
-  padding: 30px;
+  padding: clamp(18px, 5vw, 30px);
   color: var(--gray-800);
   height: 100%;
   display: flex;
@@ -240,24 +272,24 @@ body {
 }
 
 .card-header h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4.2vw, 1.5rem);
   font-weight: 700;
   color: var(--gray-900);
   margin-bottom: 0.2rem;
 }
 
 .card-header p {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.6vw, 0.9rem);
   color: var(--gray-500);
   font-weight: 500;
 }
 
 .chart-placeholder {
   width: 100%;
-  height: 150px;
+  height: clamp(110px, 28vw, 150px);
   background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
   border-radius: 12px;
-  margin-top: 2rem;
+  margin-top: 1.8rem;
   opacity: 0;
   animation: fadeIn 0.8s forwards;
   border: 1px solid var(--gray-100);
@@ -266,20 +298,21 @@ body {
 .insights-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
+  margin-top: 1.8rem;
 }
 
 .insight-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
   opacity: 0;
   animation: fadeIn 0.8s forwards;
-  padding: 0.8rem;
+  padding: clamp(0.5rem, 1.5vw, 0.8rem);
   border-radius: 12px;
   background: var(--gray-50);
   transition: all 0.3s ease;
+  font-size: clamp(0.82rem, 2.6vw, 0.95rem);
 }
 
 .insight-item:hover {
@@ -287,13 +320,21 @@ body {
   transform: translateX(5px);
 }
 
-.insight-item:nth-child(1) { animation-delay: 5s; }
-.insight-item:nth-child(2) { animation-delay: 5.2s; }
-.insight-item:nth-child(3) { animation-delay: 5.4s; }
+.insight-item:nth-child(1) {
+  animation-delay: 5s;
+}
+
+.insight-item:nth-child(2) {
+  animation-delay: 5.2s;
+}
+
+.insight-item:nth-child(3) {
+  animation-delay: 5.4s;
+}
 
 .insight-icon {
-  width: 40px;
-  height: 40px;
+  width: clamp(34px, 8.5vw, 40px);
+  height: clamp(34px, 8.5vw, 40px);
   border-radius: 10px;
   background: rgba(59, 130, 246, 0.1);
   position: relative;
@@ -314,55 +355,103 @@ body {
   mask-position: center;
 }
 
-.icon-1::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20v-6M12 14h6.5a2.5 2.5 0 0 1 0 5H12M12 14v-6M12 8H5.5a2.5 2.5 0 0 0 0 5H12M12 8v-6'/%3E%3C/svg%3E"); }
-.icon-2::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M22 21v-2a4 4 0 0 0-3-3.87'/%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E"); }
-.icon-3::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpolyline points='12 7 12 12 15 15'/%3E%3C/svg%3E"); }
+.icon-1::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20v-6M12 14h6.5a2.5 2.5 0 0 1 0 5H12M12 14v-6M12 8H5.5a2.5 2.5 0 0 0 0 5H12M12 8v-6'/%3E%3C/svg%3E");
+}
+
+.icon-2::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M22 21v-2a4 4 0 0 0-3-3.87'/%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E");
+}
+
+.icon-3::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpolyline points='12 7 12 12 15 15'/%3E%3C/svg%3E");
+}
 
 .insight-text {
   flex: 1;
   color: var(--gray-700);
   font-weight: 500;
-  font-size: 0.95rem;
 }
 
-/* Keyframe Animations */
+/* ANIMATIONS */
 @keyframes receiptSequence {
-  0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotateX(0deg) rotateY(0deg); }
-  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.1) rotateX(10deg) rotateY(10deg); }
-  50% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotateX(20deg) rotateY(20deg); }
-  51% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotateX(0deg) rotateY(0deg);
+  }
+
+  35% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1) rotateX(10deg) rotateY(10deg);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotateX(20deg) rotateY(20deg);
+  }
+
+  51% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
 }
 
 @keyframes reportSequence {
-  0% { 
-    opacity: 0; 
-    transform: translate(-50%, -50%) scale(0.8) rotateX(0deg) rotateY(0deg);
-    filter: brightness(0.8);
-  }
-  50% { 
-    opacity: 0; 
+  0% {
+    opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
     filter: brightness(0.8);
   }
-  60% { 
-    opacity: 1; 
+
+  50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    filter: brightness(0.8);
+  }
+
+  60% {
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
     filter: brightness(1);
   }
-  100% { 
-    opacity: 1; 
+
+  100% {
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1) rotateX(-5deg) rotateY(5deg);
     filter: brightness(1.1) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
   }
 }
 
 @keyframes scanEffect {
-  0% { top: 0%; opacity: 0; }
-  15% { top: 0%; opacity: 1; }
-  35% { top: 100%; opacity: 1; }
-  45% { top: 100%; opacity: 0; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  15% {
+    top: 0%;
+    opacity: 1;
+  }
+
+  35% {
+    top: 100%;
+    opacity: 1;
+  }
+
+  45% {
+    top: 100%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeUp {
@@ -370,6 +459,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -380,12 +470,12 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
-/* Add a subtle glow effect to make the white card stand out against dark background */
 .report-card-container::after {
   content: '';
   position: absolute;
@@ -402,93 +492,362 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
-/* Responsive design */
-@media (max-width: 1200px) {
+/* RESPONSIVE BREAKPOINTS */
+
+/* Tablet & Small Laptop: 768px – 1024px */
+@media (min-width: 768px) and (max-width: 1025px) {
   .hero {
-    flex-direction: column;
-    text-align: center;
-    padding-top: 6rem;
+    flex-direction: row;
+    text-align: left;
+    padding: 5rem 5% 3rem;
     gap: 3rem;
   }
-  .hero-title {
-    font-size: 3.5rem;
+
+  .hero-content {
+    flex: 1;
+    max-width: 50%;
+    padding: 0;
   }
+
+  .hero-subtitle,
   .hero-buttons {
-    justify-content: center;
+    margin-left: 0;
+    justify-content: flex-start;
   }
+
   .hero-visual {
-    width: 100%;
-    height: 400px;
-    margin-top: 3rem;
+    flex: 1;
+    max-width: 45%;
+    height: clamp(380px, 55vw, 460px);
   }
-}
 
-@media (max-width: 768px) {
-  .hero {
-    padding: 0 5%;
-  }
-  
-  .hero-title {
-    font-size: 2.8rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .cta-btn, .secondary-btn {
-    padding: 0.8rem 1.8rem;
-    font-size: 0.9rem;
-  }
-  
-  .receipt-container, .report-card-container {
-    width: 200px;
-    height: 300px;
-  }
-  
+  .receipt-container,
   .report-card-container {
-    width: 280px;
-    height: 380px;
+    width: clamp(210px, 40vw, 260px);
+    height: clamp(290px, 60vw, 380px);
   }
-  
-  .report-card-content {
-    padding: 20px;
-  }
-  
-  .card-header h3 {
-    font-size: 1.3rem;
-  }
-  
-  .chart-placeholder {
-    height: 120px;
-    margin-top: 1.5rem;
-  }
-  
-  .insight-item {
-    padding: 0.6rem;
+
+  .report-card-container {
+    width: clamp(280px, 50vw, 340px);
+    height: clamp(370px, 75vw, 440px);
   }
 }
 
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2.2rem;
+/* Laptop & Desktop: ≥1024px */
+@media (min-width: 1024px) {
+  .hero {
+    flex-direction: row;
+    text-align: left;
+    padding: 5rem 8%;
+    gap: 5rem;
   }
-  
+
+  .hero-content {
+    flex: 1;
+    max-width: 650px;
+    padding: 0;
+  }
+
+  .hero-subtitle,
+  .hero-buttons {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  .hero-visual {
+    flex: 1;
+    max-width: 500px;
+    height: 500px;
+  }
+
+  .receipt-container {
+    width: 250px;
+    height: 350px;
+  }
+
+  .report-card-container {
+    width: 350px;
+    height: 450px;
+  }
+}
+
+/* Mobile: <768px */
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 7rem;
+  }
+
   .hero-buttons {
     flex-direction: column;
+    align-items: center;
   }
-  
-  .receipt-container {
-    width: 180px;
-    height: 250px; 
+
+  .cta-btn,
+  .secondary-btn {
+    width: 85%;
+    max-width: 300px;
   }
-  
-  .report-card-container {
-    width: 250px;
-    height: 340px;
+
+  .hero-visual {
+    height: clamp(340px, 75vw, 500px);
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 6.5rem;
+  }
+
+  .cta-btn,
+  .secondary-btn {
+    width: 90%;
+  }
+}
+
+
+
+
+
+
+
+/* 📱 Mobile Scan + Report Transition */
+@media (max-width: 767px) {
+  .visual-desktop {
+    display: none;
+  }
+
+  .visual-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Container that flips both sides */
+  .mobile-animation {
+    position: relative;
+    width: 230px;
+    height: 300px;
+    perspective: 1000px;
+  }
+
+  /* Inner container that rotates */
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: mobileFlipSequence 9s ease-in-out infinite;
+  }
+
+  /* Receipt card (front) */
+  .floating-receipt,
+  .floating-report {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--border-color-dark);
+    background: var(--card-bg-dark);
+    overflow: hidden;
+  }
+
+  .floating-receipt {
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: mobileReceiptPulse 6s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  .floating-report {
+    padding: 1rem 1.2rem;
+    transform: rotateY(180deg);
+    background: #ffffff;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Receipt visuals */
+  .floating-line {
+    height: 12px;
+    background: var(--secondary-color);
+    opacity: 0.3;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .floating-line.w-70 {
+    width: 70%;
+  }
+
+  .floating-line.w-50 {
+    width: 50%;
+  }
+
+  .floating-total {
+    height: 16px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+
+  /* Report visuals */
+  .report-header h4 {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .report-header p {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .report-bar {
+    height: 10px;
+    background: #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .report-bar.w-70 {
+    width: 70%;
+  }
+
+  .report-bar.w-50 {
+    width: 50%;
+  }
+
+  .report-summary {
+    height: 20px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+    border-radius: 4px;
+    margin-top: 1.2rem;
+  }
+
+  /* Scan line */
+  .mobile-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--primary-color),
+        var(--accent-color),
+        transparent);
+    box-shadow: 0 0 15px var(--primary-color);
+    opacity: 0;
+    animation: mobileScanEffect 2.8s ease-in-out infinite;
+  }
+
+  /* Glow */
+  .floating-receipt::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.15), transparent 70%);
+    border-radius: 20px;
+    filter: blur(10px);
+    z-index: -1;
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  /* Animations */
+  @keyframes mobileFlipSequence {
+    0% {
+      transform: rotateY(0deg);
+    }
+
+    40% {
+      transform: rotateY(0deg);
+    }
+
+    50% {
+      transform: rotateY(180deg);
+    }
+
+    90% {
+      transform: rotateY(180deg);
+    }
+
+    100% {
+      transform: rotateY(0deg);
+    }
+  }
+
+  @keyframes mobileScanEffect {
+    0% {
+      top: 0%;
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    50% {
+      top: 100%;
+      opacity: 1;
+    }
+
+    70% {
+      opacity: 0;
+    }
+
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes mobileReceiptPulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.03);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulseGlow {
+
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+
+    50% {
+      opacity: 0.8;
+    }
   }
 }
